@@ -15,4 +15,10 @@ public class Orc : Creature
     {
         Console.WriteLine("Orc walks.");
     }
+
+    public override void Attack(Creature target)
+    {
+        base.Attack(target);
+        Console.WriteLine($"{Name} swings his axe!");
+    }
 }

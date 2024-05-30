@@ -15,4 +15,10 @@ public class Goblin : Creature
     {
         Console.WriteLine("Goblin walks.");
     }
+
+    public override void Attack(Creature target)
+    {
+        base.Attack(target);
+        Console.WriteLine($"{Name} throws a spear!");
+    }
 }
