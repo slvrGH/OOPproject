@@ -15,4 +15,10 @@ public class Dragon : Creature
     {
         Console.WriteLine("Dragon flies.");
     }
+
+    public override void Attack(Creature target)
+    {
+        base.Attack(target);
+        Console.WriteLine($"{Name} breathes fire!");
+    }
 }

@@ -15,4 +15,10 @@ public class Knight : Creature
     {
         Console.WriteLine("Knight rides his horse.");
     }
+
+    public override void Attack(Creature target)
+    {
+        base.Attack(target);
+        Console.WriteLine($"{Name} hits with his sword!");
+    }
 }
