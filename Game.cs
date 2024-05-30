@@ -7,42 +7,46 @@ using System.Threading.Tasks;
 public class Game
 {
     private Creature[] enemies;
-    private Knight knight;
 
-    public Game()
+    public Game(Creature[] enemies)
     {
-        knight = new Knight("Sir Lancelot", 100, 10, 20, 5);
-        enemies = new Creature[]
-        {
-            new Goblin("Goblin", 20, 5, 10, 2),
-            new Orc("Orc", 30, 10, 15, 3),
-            new Centaur("Centaur", 40, 15, 20, 4),
-            new Dragon("Dragon", 50, 20, 25, 5)
-        };
+        this.enemies = enemies;
     }
 
     public void Play()
     {
-        foreach (Creature enemy in enemies)
+        Knight knight = new Knight("Sir Maximus", 100, 10, 20, 5);
+
+        while (true)
         {
-            while (knight.IsAlive && enemy.IsAlive)
+            foreach (Creature enemy in enemies)
             {
-                knight.Move();
-                knight.Attack(enemy);
                 if (enemy.IsAlive)
                 {
-                    enemy.Move();
-                    enemy.Attack(knight);
+                    knight.Move();
+                    knight.Attack(enemy);
+                    if (!enemy.IsAlive)
+                    {
+                        Console.WriteLine($"{enemy.Name} has been defeated!");
+                        enemies = enemies.Where(e => e != enemy).ToArray();
+                        if (enemies.Length == 0)
+                        {
+                            Console.WriteLine("You win!");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        enemy.Move();
+                        enemy.Attack(knight);
+                        if (!knight.IsAlive)
+                        {
+                            Console.WriteLine("You have been defeated!");
+                            return;
+                        }
+                    }
                 }
             }
-
-            if (!knight.IsAlive)
-            {
-                Console.WriteLine("You have been defeated!");
-                return;
-            }
         }
-
-        Console.WriteLine("You win!");
     }
 }

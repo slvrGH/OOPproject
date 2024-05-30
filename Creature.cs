@@ -25,7 +25,7 @@ public abstract class Creature
 
     public abstract void Move();
 
-    public virtual void Attack(Creature target)
+    public void Attack(Creature target)
     {
         int damage = new Random().Next(MinDamage, MaxDamage + 1);
         target.TakeDamage(damage);
@@ -39,7 +39,6 @@ public abstract class Creature
         if (Health <= 0)
         {
             IsAlive = false;
-            Console.WriteLine($"{Name} has been defeated!");
         }
     }
 }

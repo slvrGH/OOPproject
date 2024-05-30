@@ -15,10 +15,4 @@ public class Centaur : Creature
     {
         Console.WriteLine("Centaur runs.");
     }
-
-    public override void Attack(Creature target)
-    {
-        base.Attack(target);
-        Console.WriteLine($"{Name} shoots an arrow!");
-    }
 }
